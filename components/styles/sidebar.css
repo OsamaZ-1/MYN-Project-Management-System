@@ -1,0 +1,85 @@
+/* Container */
+.app-container {
+  display: flex;
+  height: 100vh;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 220px;
+  background-color: #f0f0f0;
+  color: #443d47;
+  display: flex;
+  flex-direction: column;
+  transition: width 0.3s;
+}
+
+.sidebar.collapsed {
+  width: 3rem;
+}
+
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid #374151;
+}
+
+.collapse-btn {
+  background: transparent;
+  border: none;
+  color: #443d47;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 1rem;
+  flex: 1;
+}
+
+.sidebar-btn {
+  background: transparent;
+  border: none;
+  color: #443d47;
+  text-align: left;
+  margin-top: 10px;
+  padding: 0.6rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.sidebar-btn:hover {
+  background-color: #a7a8ac;
+  color: #443d47;
+  border-radius: 6px;
+}
+
+.sidebar-btn.active {
+  background-color: #ffffff;
+  color: #443d47;
+  font-weight: 600;
+  border-radius: 6px;
+  border-left: 3px solid #374151;
+}
+
+/* Main content */
+.main-content {
+  flex: 1;
+  background: #f9fafb;
+  padding: 1rem;
+  overflow-y: auto;
+}
+
+/* Placeholder sections */
+.placeholder {
+  font-size: 1.2rem;
+  color: #374151;
+  text-align: center;
+  margin-top: 2rem;
+}

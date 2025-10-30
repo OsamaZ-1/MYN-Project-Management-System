@@ -1,0 +1,58 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Employee {
+  id        Int       @id @default(autoincrement())
+  name      String
+  role      String?
+  events    Event[]   @relation("EventEmployees")
+  createdAt DateTime  @default(now())
+}
+
+model Client {
+  id        Int       @id @default(autoincrement())
+  name      String
+  contact   String?
+  email     String?
+  projects  Project[]
+  invoices  Invoice[]
+  createdAt DateTime  @default(now())
+}
+
+model Project {
+  id          Int       @id @default(autoincrement())
+  name        String
+  client      Client?   @relation(fields: [clientId], references: [id])
+  clientId    Int?
+  events      Event[]
+  createdAt   DateTime  @default(now())
+}
+
+model Event {
+  id          Int       @id @default(autoincrement())
+  title       String
+  description String?
+  start       DateTime
+  end         DateTime
+  project     Project?  @relation(fields: [projectId], references: [id])
+  projectId   Int?
+  employees   Employee[] @relation("EventEmployees")
+  createdAt   DateTime   @default(now())
+}
+
+model Invoice {
+  id         Int      @id @default(autoincrement())
+  number     String   @unique
+  client     Client   @relation(fields: [clientId], references: [id])
+  clientId   Int
+  amount     Float
+  issuedAt   DateTime @default(now())
+  dueAt      DateTime?
+  paid       Boolean  @default(false)
+}
