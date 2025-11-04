@@ -20,30 +20,36 @@ model Client {
   name      String
   contact   String?
   email     String?
-  projects  Project[]
+  events    Event[]
   invoices  Invoice[]
   createdAt DateTime  @default(now())
 }
 
-model Project {
-  id          Int       @id @default(autoincrement())
-  name        String
-  client      Client?   @relation(fields: [clientId], references: [id])
-  clientId    Int?
-  events      Event[]
-  createdAt   DateTime  @default(now())
-}
-
 model Event {
-  id          Int       @id @default(autoincrement())
-  title       String
-  description String?
-  start       DateTime
-  end         DateTime
-  project     Project?  @relation(fields: [projectId], references: [id])
-  projectId   Int?
-  employees   Employee[] @relation("EventEmployees")
-  createdAt   DateTime   @default(now())
+  id             Int          @id @default(autoincrement())
+  title          String
+  description    String?
+  start          DateTime
+  end            DateTime
+  duration       Int?
+  client         Client       @relation(fields: [clientId], references: [id])
+  clientId       Int
+  employees      Employee[]   @relation("EventEmployees")
+
+  // ───── Recurrence-related fields ─────
+  isRecurring    Boolean      @default(false)
+  rrule          Json?        // stores rrule options (freq, interval, byweekday, etc.)
+  exdate         DateTime[]   // list of specific dates to skip (exceptions)
+
+  // ───── Exception (edited occurrence) handling ─────
+  parentEvent    Event?       @relation("EventExceptions", fields: [parentEventId], references: [id])
+  parentEventId  Int?         // links an exception to its recurring parent
+  exceptions     Event[]      @relation("EventExceptions") // reverse relation: parent → exceptions
+
+  // ───── Metadata ─────
+  color          String?      // for frontend display
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
 }
 
 model Invoice {

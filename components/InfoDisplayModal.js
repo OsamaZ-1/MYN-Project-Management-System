@@ -3,7 +3,7 @@
 import React from "react";
 import "./styles/info-display-modal.css";
 
-export default function InfoDisplayModal({ info, openDisplayInfo, setOpenDisplayInfo, onEdit }) {
+export default function InfoDisplayModal({ info, openDisplayInfo, setOpenDisplayInfo, onEdit, allEmployees, allClients }) {
   if (!openDisplayInfo || !info) return null;
 
   const { title, start, end, extendedProps } = info.event;
@@ -33,7 +33,9 @@ export default function InfoDisplayModal({ info, openDisplayInfo, setOpenDisplay
           {extendedProps?.client && (
             <div className="modal-client">
               <span className="client-label">Client:</span>
-              <span className="client-name">{extendedProps.client}</span>
+              <span className="client-name">
+                  {allClients.find(c => c.id === extendedProps.client)?.name || "Unknown"}
+              </span>
             </div>
           )}
 
@@ -57,11 +59,14 @@ export default function InfoDisplayModal({ info, openDisplayInfo, setOpenDisplay
             <div className="modal-employees">
               <h3>Assigned Employees</h3>
               <div className="employee-list">
-                {extendedProps.employees.map((emp, i) => (
-                  <span key={i} className="employee-chip">
-                    {emp}
-                  </span>
-                ))}
+                {extendedProps.employees.map((empId) => {
+                  const employee = allEmployees.find(e => e.id === empId);
+                  return (
+                    <span key={empId} className="employee-chip">
+                      {employee ? employee.name : "Unknown"}
+                    </span>
+                  );
+                })}
               </div>
             </div>
           )}
