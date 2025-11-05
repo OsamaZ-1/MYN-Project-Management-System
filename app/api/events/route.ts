@@ -23,6 +23,7 @@ export async function GET() {
     employees: info.employees.map((e) => e.id), // array of string IDs
     client: info.client?.id || "",              // string ID
     color: info.color,
+    parentId: info.parentEventId,
   }));
 
   // Return as JSON
@@ -46,7 +47,7 @@ export async function POST(req: Request) {
       color,
       employees,   // array of employee IDs
       client,      // client ID
-      parentEvent, // parent event ID for exceptions
+      parentId, // parent event ID for exceptions
     } = body;
 
     let event;
@@ -71,8 +72,8 @@ export async function POST(req: Request) {
             set: [],
             connect: employees.map((empId: number) => ({ id: empId })),
           },
-          ...(parentEvent
-            ? { parentEvent: { connect: { id: parentEvent } } }
+          ...(parentId
+            ? { parentEvent: { connect: { id: parentId } } }
             : {}),
         },
         include: {
@@ -98,8 +99,8 @@ export async function POST(req: Request) {
           employees: {
             connect: employees.map((empId: number) => ({ id: empId })),
           },
-          ...(parentEvent
-            ? { parentEvent: { connect: { id: parentEvent } } }
+          ...(parentId
+            ? { parentEvent: { connect: { id: parentId } } }
             : {}),
         },
         include: {

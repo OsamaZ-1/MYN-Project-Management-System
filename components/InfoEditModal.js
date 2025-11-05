@@ -60,9 +60,10 @@ export default function InfoEditModal({
     setClient(eventData.client || "")
     setColor(eventData.color || generateRandomHexColor());
     setBaseEvent(eventData.baseEvent || null);
+    setParentId(eventData.parentId);
 
     // Recurring Events Options
-    if (eventData.rrule && typeof eventData.rrule === "object") {
+    if (eventData.rrule != null) {
       setIsRecurring(true);
       setFrequency(eventData.rrule.freq || "");
       setWeekdays(eventData.rrule.byweekday || []);
@@ -71,8 +72,7 @@ export default function InfoEditModal({
       const hasUntil = eventData.rrule.until;
       const hasCount = eventData.rrule.count;
       setEndType(hasUntil ? "until" : hasCount ? "count" : null);
-      setExdate(eventData.exdate || []);
-      setParentId(eventData.parentId || null);
+      setExdate(eventData.exdate || []);      
     }
     else{
       setIsRecurring(false);
@@ -82,7 +82,6 @@ export default function InfoEditModal({
       setCount("");
       setEndType(null);
       setExdate([]);
-      setParentId(null);
     }
 
   } else {

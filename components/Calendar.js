@@ -130,7 +130,7 @@ export default function Calendar() {
   // Handle Editing already existing events
   const handleEventEdit = (info) => {
     let infoID = info._def.publicId;
-    let infoParentID = null;
+    let infoParentID = info.extendedProps?.parentId;
     // let infoRrule = info._def.recurringDef?.typeData?.rrule || null;
     let baseEvent = null;
 
@@ -147,7 +147,6 @@ export default function Calendar() {
 
         // also add this event to the exceptions of the original
         baseEvent.exdate = [...(baseEvent.exdate || []), info.start.toISOString()];
-        // saveEventDB(baseEvent);
       }
       else{
         baseEvent = null;
