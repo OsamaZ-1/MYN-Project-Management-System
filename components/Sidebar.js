@@ -1,8 +1,9 @@
 "use client";
 
 import React, { useState } from "react";
-import Calendar from "./Calendar";
-import "./styles/sidebar.css"
+import Calendar from "./Calendar/Calendar.js";
+import ClientsPage from "./DB Data/Clients.js";
+import "./sidebar.css"
 
 export default function Sidebar() {
   const [activeView, setActiveView] = useState("calendar");
@@ -11,7 +12,7 @@ export default function Sidebar() {
   const views = [
     { id: "calendar", label: "📆 Calendar" },
     { id: "clients", label: "👥 Clients" },
-    { id: "tasks", label: "✅ Tasks" },
+    { id: "employees", label: "💼 Employees" },
   ];
 
   return (
@@ -48,10 +49,8 @@ export default function Sidebar() {
       {/* Main content */}
       <div className="main-content">
         {activeView === "calendar" && <Calendar />}
-        {activeView === "clients" && (
-          <div className="placeholder">Clients Section (coming soon)</div>
-        )}
-        {activeView === "tasks" && (
+        {activeView === "clients" && <ClientsPage />}
+        {activeView === "employees" && (
           <div className="placeholder">Tasks Section (coming soon)</div>
         )}
       </div>

@@ -1,0 +1,234 @@
+.container {
+  /* max-width: 900px; */
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: "Inter", sans-serif;
+  color: #1f2937;
+}
+
+.headerContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    margin-bottom: 3rem;
+}
+
+.title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #111827;
+}
+
+.addBtn {
+  display: block;
+  margin-bottom: 1rem;
+  padding: 0.6rem 1.2rem;
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.addBtn:hover {
+  background-color: #1e40af;
+}
+
+.addForm {
+  display: flex;
+  flex-direction: row;
+  gap: 0.7rem;
+  margin-bottom: 1rem;
+  background-color: #f3f4f6;
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+
+.addForm input {
+  padding: 0.6rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.4rem;
+}
+
+.saveBtn {
+  background-color: #059669;
+  color: white;
+  border: none;
+  border-radius: 0.4rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-weight: 500;
+  align-self: flex-start;
+  margin-top: 5px;
+}
+
+.saveBtn:hover {
+  background-color: #047857;
+}
+
+.clientsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(260px, 1fr));
+  gap: 1.2rem; /* row gap, column gap */
+  width: 100%; /* fill the whole screen */
+}
+
+.clientCard {
+  background-color: white;
+  border-radius: 0.7rem;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.06);
+  padding: 1rem;
+  transition: transform 0.2s ease;
+  overflow: auto;
+
+  display: inline-block; /* allows card to fit content */
+  max-width: 100%;       /* prevents overflow beyond container */
+  box-sizing: border-box; /* include padding in width */
+}
+
+.clientCard:hover {
+  transform: translateY(-4px);
+}
+
+.clientCard h2 {
+  margin-bottom: 0.3rem;
+  font-size: 1.2rem;
+}
+
+.clientCard p {
+  margin: 0.3rem 0;
+  color: #374151;
+}
+
+.actions {
+  display: flex;
+  align-items: end;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.iconBtn {
+  background-color: #f3f4f6;
+  border: none;
+  border-radius: 0.4rem;
+  padding: 0.4rem;
+  cursor: pointer;
+  display: flex;
+  align-items: end;
+  justify-content: center;
+  transition: background-color 0.2s;
+}
+
+.iconBtn:hover {
+  background-color: #e5e7eb;
+}
+
+.editContainer p {
+  background-color: #f9fafb;
+  padding: 0.4rem;
+  border-radius: 0.3rem;
+  border: 1px dashed #d1d5db;
+  cursor: text;
+}
+
+.cancelEditBtn {
+  position: absolute;
+  top: -4px;
+  right: 5px;
+  background: none;
+  border: none;
+  color: #9ca3af;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.cancelEditBtn:hover {
+  color: #ef4444;
+}
+
+.editContainer {
+  position: relative; /* for the absolute X button positioning */
+  background-color: #f9fafb;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border: 1px dashed #d1d5db;
+  cursor: text;
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid #e5e7eb; /* light gray line */
+  margin: 0.5rem 0 1rem 0; /* spacing around the line */
+}
+
+.clientInfoGrid {
+  display: grid;
+  grid-template-columns: max-content auto; /* labels take only what they need */
+  gap: 0.5rem 1rem;
+  margin-bottom: 1rem;
+  white-space: nowrap; /* prevents labels/values from wrapping */
+}
+
+
+.label {
+  font-weight: 600;
+  color: #4b5563; /* gray for labels */
+  text-align: left;
+}
+
+.value {
+  color: #1f2937; /* darker color for values */
+}
+
+.client-edit-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  width: 100%;
+  max-width: 350px;
+}
+
+.inputField {
+  border: 1px solid rgb(73, 71, 71);
+  outline: none;
+  background: #f9fafb;
+  padding: 0.6rem 0.8rem;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+  margin-bottom: 5px;
+}
+
+.inputField:hover {
+  background: #f1f5f9;
+  border: 1px solid black;
+}
+
+.inputField:focus {
+  background: white;
+  box-shadow: 0 0 0 1px #3b82f6;
+  border: 1px solid #3b82f6
+}
+
+@media (max-width: 1200px) {
+  .clientsGrid {
+    grid-template-columns: repeat(3, minmax(260px, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .clientsGrid {
+    grid-template-columns: repeat(2, minmax(260px, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .clientsGrid {
+    grid-template-columns: repeat(1, minmax(260px, 1fr));
+  }
+}

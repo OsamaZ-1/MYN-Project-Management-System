@@ -11,7 +11,7 @@ export async function GET() {
   });
 
   // Reshape events to match old frontend structure
-  const formattedEvents = events.map((info) => ({
+  const formattedEvents = events.map((info: any) => ({
     id: info.id,
     title: info.title,
     start: info.start,
@@ -20,7 +20,7 @@ export async function GET() {
     exdate: info.exdate,
     duration: info.duration,
     description: info.description || "",
-    employees: info.employees.map((e) => e.id), // array of string IDs
+    employees: info.employees.map((e: any) => e.id), // array of string IDs
     client: info.client?.id || "",              // string ID
     color: info.color,
     parentId: info.parentEventId,
